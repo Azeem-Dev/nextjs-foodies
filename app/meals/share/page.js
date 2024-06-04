@@ -1,16 +1,23 @@
-'use client';
-import { useActionState } from "react";
+"use client";
+//FIXME: SUPPORT IN NEW NEXTJS
+// import { useActionState } from "react";
+import { useFormState } from 'react-dom';
 import ImagePicker from "@/components/meals/image-picker";
 import styles from "./page.module.css";
 import { shareMeal } from "@/lib/actions";
 import MealsFormSubmitButton from "@/components/meals/meals-form-submit-button";
 
 export default function ShareMealPage() {
-
-  const [state, formAction] = useActionState(shareMeal, {
+  
+  //FIXME: SUPPORT IN NEW NEXTJS
+  // const [state, formAction] = useActionState( shareMeal, {
+  //   message: null,
+  // });
+  const [state, formAction] = useFormState( shareMeal, {
     message: null,
   });
-
+  
+  
   return (
     <>
       <header className={styles.header}>
@@ -49,9 +56,7 @@ export default function ShareMealPage() {
             ></textarea>
           </p>
           <ImagePicker label="Your Image" name="image" />
-          {
-            state.message && <p>{state.message}</p>
-          }
+          {state.message && <p>{state.message}</p>}
           <p className={styles.actions}>
             <MealsFormSubmitButton />
           </p>
